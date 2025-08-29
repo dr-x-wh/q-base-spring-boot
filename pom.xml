@@ -26,7 +26,7 @@
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <spring-cloud-alibaba.version>2023.0.3.3</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
         <encoding>UTF-8</encoding>
     </properties>
 
@@ -40,6 +40,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.drx</groupId>
+                <artifactId>q-base</artifactId>
+                <version>0.0.1</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>

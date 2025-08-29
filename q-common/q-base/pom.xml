@@ -5,15 +5,18 @@
 
     <parent>
         <groupId>com.drx</groupId>
-        <artifactId>q-base-spring-boot</artifactId>
+        <artifactId>q-common</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>q-common</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>q-base</artifactId>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>q-base</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -11,11 +11,29 @@
 
     <artifactId>q-system</artifactId>
     <packaging>jar</packaging>
+    <properties>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
+    </properties>
 
     <dependencies>
+        <!--服务发现-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!--熔断降级-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-base</artifactId>
         </dependency>
     </dependencies>
 
