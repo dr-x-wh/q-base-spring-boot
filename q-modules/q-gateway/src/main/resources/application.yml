@@ -1,9 +1,9 @@
 server:
-  port: 0
+  port: 8080
 
 spring:
   application:
-    name: q-system
+    name: q-gateway
   profiles:
     active: dev
   cloud:

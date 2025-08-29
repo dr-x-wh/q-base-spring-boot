@@ -11,7 +11,7 @@
 
     <groupId>com.drx</groupId>
     <artifactId>q-base-spring-boot</artifactId>
-    <version>0.0.1</version>
+    <version>${project.reversion}</version>
     <packaging>pom</packaging>
 
     <name>q-base-spring-boot</name>
@@ -24,6 +24,7 @@
     </modules>
 
     <properties>
+        <project.reversion>0.0.2</project.reversion>
         <java.version>17</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
         <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
@@ -43,7 +44,7 @@
             <dependency>
                 <groupId>com.drx</groupId>
                 <artifactId>q-base-web</artifactId>
-                <version>0.0.1</version>
+                <version>${project.reversion}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
