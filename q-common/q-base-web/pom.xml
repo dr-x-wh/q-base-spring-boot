@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>q-base</artifactId>
+    <artifactId>q-base-web</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

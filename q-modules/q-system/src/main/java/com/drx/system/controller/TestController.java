@@ -1,6 +1,6 @@
 package com.drx.system.controller;
 
-import com.drx.base.entity.Result;
+import com.drx.web.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;

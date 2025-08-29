@@ -42,7 +42,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.drx</groupId>
-                <artifactId>q-base</artifactId>
+                <artifactId>q-base-web</artifactId>
                 <version>0.0.1</version>
             </dependency>
             <dependency>

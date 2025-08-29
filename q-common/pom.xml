@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>q-base</module>
+        <module>q-base-web</module>
     </modules>
 
 </project>

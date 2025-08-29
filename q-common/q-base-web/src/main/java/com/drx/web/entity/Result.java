@@ -1,4 +1,4 @@
-package com.drx.base.entity;
+package com.drx.web.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
