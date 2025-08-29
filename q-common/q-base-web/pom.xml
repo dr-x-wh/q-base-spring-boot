@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.drx</groupId>
         <artifactId>q-common</artifactId>
-        <version>${project.reversion}</version>
+        <version>0.0.2</version>
     </parent>
 
     <artifactId>q-base-web</artifactId>
