@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: q-system
+              uri: lb://q-system
+              predicates:
+                - Path=/system/**
+              filters:
+                - StripPrefix=1
