@@ -16,7 +16,7 @@ public class Result<T> {
         return new Result<>(0, "OK", data);
     }
 
-    public static <T> Result<T> success() {
+    public static <Void> Result<Void> success() {
         return Result.success(null);
     }
 
