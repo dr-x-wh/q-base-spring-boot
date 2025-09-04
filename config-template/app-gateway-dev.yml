@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: app-test
+              uri: lb://app-test
+              predicates:
+                - Path=/test/**
+              filters:
+                - StripPrefix=1
