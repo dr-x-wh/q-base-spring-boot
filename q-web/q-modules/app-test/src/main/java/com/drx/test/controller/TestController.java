@@ -2,7 +2,7 @@ package com.drx.test.controller;
 
 import com.drx.base.entity.SysUser;
 import com.drx.base.tools.response.Result;
-import com.drx.test.service.TestService;
+import com.drx.test.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,17 +15,16 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestController {
 
+    private final SysUserService sysUserService;
 
-    private final TestService testService;
-
-    public TestController(TestService testService) {
-        this.testService = testService;
+    public TestController(SysUserService sysUserService) {
+        this.sysUserService = sysUserService;
     }
 
     @GetMapping("")
     public Result<List<SysUser>> test() {
         log.debug("test");
-        return Result.success(testService.getSysUser());
+        return Result.success(sysUserService.list());
     }
 
 }
