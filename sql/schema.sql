@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `sys_user`
     `nickname`   VARCHAR(50) COMMENT '昵称',
     `gender`     VARCHAR(50)     NOT NULL COMMENT '性别',
     `role`       VARCHAR(50)     NOT NULL DEFAULT 'user' COMMENT '用户权限',
-    `state`     VARCHAR(50)     NOT NULL DEFAULT '1' COMMENT '用户状态',
+    `state`      VARCHAR(50)     NOT NULL DEFAULT '1' COMMENT '用户状态',
     `avatar_url` VARCHAR(255) COMMENT '头像URL',
     `updated_at` DATETIME COMMENT '更新时间',
     `updated_by` VARCHAR(50) COMMENT '更新人',
@@ -24,9 +24,9 @@ CREATE TABLE IF NOT EXISTS `sys_user`
     PRIMARY KEY (`id`),
     UNIQUE KEY `uniq_username` (`username`),
     INDEX `idx_status` (`state`)
-    ) ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_zh_0900_as_cs COMMENT ='用户表';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_zh_0900_as_cs COMMENT ='用户表';
 
 -- ------------------------------
 -- 字典表（存储字典类型，如性别、状态）
@@ -45,9 +45,9 @@ CREATE TABLE IF NOT EXISTS `sys_dict`
     PRIMARY KEY (`id`),
     UNIQUE KEY `uniq_code` (`code`),
     INDEX `inx_code` (`code`)
-    ) ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_zh_0900_as_cs COMMENT ='字典类型表';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_zh_0900_as_cs COMMENT ='字典类型表';
 
 -- ------------------------------
 -- 字典项表（存储字典类型下的具体值，如"男"、"女"）
@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `sys_dict_item`;
 CREATE TABLE IF NOT EXISTS `sys_dict_item`
 (
     `id`          BIGINT UNSIGNED  NOT NULL AUTO_INCREMENT COMMENT 'ID',
-    `dict_code`   VARCHAR(50)      NOT NULL COMMENT '所属字典类型编码',
+    `dict_id`     BIGINT           NOT NULL COMMENT '所属字典类型编码',
     `key`         VARCHAR(50)      NOT NULL COMMENT '字典项编码',
     `value`       VARCHAR(50)      NOT NULL COMMENT '字典项名称',
     `has_default` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否默认值（0-否，1-是）',
@@ -67,29 +67,29 @@ CREATE TABLE IF NOT EXISTS `sys_dict_item`
     `created_at`  DATETIME         NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `created_by`  VARCHAR(50)      NOT NULL DEFAULT 'system' COMMENT '创建人',
     PRIMARY KEY (`id`),
-    UNIQUE KEY `uniq_key` (`dict_code`, `key`),
-    INDEX `idx_dict_code` (`dict_code`),
+    UNIQUE KEY `uniq_key` (`dict_id`, `key`),
+    INDEX `idx_dict_id` (`dict_id`),
     INDEX `idx_key` (`key`)
-    ) ENGINE = InnoDB
-    DEFAULT CHARSET = utf8mb4
-    COLLATE = utf8mb4_zh_0900_as_cs COMMENT ='字典项表';
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_zh_0900_as_cs COMMENT ='字典项表';
 
 -- ------------------------------
 -- 插入字典类型（sys_dict 表）
 -- ------------------------------
-INSERT INTO `sys_dict` (`code`, `name`, `description`)
-VALUES ('gender', '性别', '用户性别类型'),
-       ('sys_user_state', '用户状态', '用户账号状态类型'),
-       ('sys_user_role', '用户权限', '用户账号权限');
+INSERT INTO `sys_dict` (`id`, `code`, `name`, `description`)
+VALUES (1, 'gender', '性别', '用户性别类型'),
+       (2, 'sys_user_state', '用户状态', '用户账号状态类型'),
+       (3, 'sys_user_role', '用户权限', '用户账号权限');
 
 -- ------------------------------
 -- 插入字典项（sys_dict_item 表）
 -- ------------------------------
-INSERT INTO `sys_dict_item` (`dict_code`, `key`, `value`, `has_default`, `sort`, `description`)
-VALUES ('gender', '1', '男', 0, 2, '男性'),
-       ('gender', '0', '女', 0, 3, '女性'),
-       ('sys_user_state', '1', '正常', 1, 1, '正常'),
-       ('sys_user_state', '0', '禁用', 0, 2, '禁用'),
-       ('sys_user_state', '-1', '锁定', 0, 3, '锁定'),
-       ('sys_user_role', 'user', '用户', 1, 1, '用户'),
-       ('sys_user_role', 'administrator', '开发者', 0, 9, '开发者');
+INSERT INTO `sys_dict_item` (`dict_id`, `key`, `value`, `has_default`, `sort`, `description`)
+VALUES (1, '1', '男', 0, 2, '男性'),
+       (1, '0', '女', 0, 3, '女性'),
+       (2, '1', '正常', 1, 1, '正常'),
+       (2, '0', '禁用', 0, 2, '禁用'),
+       (2, '-1', '锁定', 0, 3, '锁定'),
+       (3, 'user', '用户', 1, 1, '用户'),
+       (3, 'administrator', '开发者', 0, 9, '开发者');

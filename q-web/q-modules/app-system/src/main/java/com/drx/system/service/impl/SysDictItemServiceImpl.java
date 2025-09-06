@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author tom
  * @description 针对表【sys_dict_item(字典项表)】的数据库操作Service实现
- * @createDate 2025-09-06 10:25:23
+ * @createDate 2025-09-06 10:43:26
  */
 @Service
 public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDictItem> implements SysDictItemService {

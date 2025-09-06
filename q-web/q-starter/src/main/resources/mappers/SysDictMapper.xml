@@ -5,14 +5,14 @@
 <mapper namespace="com.drx.starter.mapper.SysDictMapper">
 
     <resultMap id="BaseResultMap" type="com.drx.starter.entity.SysDict">
-            <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="code" column="code" jdbcType="VARCHAR"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="description" column="description" jdbcType="VARCHAR"/>
-            <result property="updated_at" column="updated_at" jdbcType="TIMESTAMP"/>
-            <result property="updated_by" column="updated_by" jdbcType="VARCHAR"/>
-            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
-            <result property="created_by" column="created_by" jdbcType="VARCHAR"/>
+            <id property="id" column="id" />
+            <result property="code" column="code" />
+            <result property="name" column="name" />
+            <result property="description" column="description" />
+            <result property="updatedAt" column="updated_at" />
+            <result property="updatedBy" column="updated_by" />
+            <result property="createdAt" column="created_at" />
+            <result property="createdBy" column="created_by" />
     </resultMap>
 
     <sql id="Base_Column_List">
