@@ -1,2 +1,4 @@
 com.drx.starter.config.MybatisConfig
 com.drx.starter.config.JacksonConfig
+com.drx.starter.config.RedisConfig
+com.drx.starter.service.RedisService

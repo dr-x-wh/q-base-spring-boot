@@ -25,9 +25,9 @@
 
     <properties>
         <revision>1.0.1</revision>
-        <java.version>17</java.version>
+        <java.version>24</java.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <spring-cloud-alibaba.version>2023.0.1.2</spring-cloud-alibaba.version>
+        <spring-cloud-alibaba.version>2025.0.0.0-preview</spring-cloud-alibaba.version>
         <encoding>UTF-8</encoding>
     </properties>
 
