@@ -1,4 +1,4 @@
-package com.drx.starter.service;
+package com.drx.starter.repository;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

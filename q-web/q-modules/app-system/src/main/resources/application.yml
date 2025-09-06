@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: app-test
+    name: app-system
   profiles:
     active: dev
   cloud:

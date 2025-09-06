@@ -15,7 +15,7 @@
 
     <modules>
         <module>app-auth</module>
-        <module>app-test</module>
+        <module>app-system</module>
     </modules>
 
     <dependencies>

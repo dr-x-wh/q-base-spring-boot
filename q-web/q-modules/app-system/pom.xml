@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>app-test</artifactId>
+    <artifactId>app-system</artifactId>
     <packaging>jar</packaging>
 
 </project>
