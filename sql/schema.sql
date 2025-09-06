@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `sys_dict_item`
     item_value  VARCHAR(50)      NOT NULL COMMENT '字典项名称',
     has_default TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否默认值（0-否，1-是）',
     sort        TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '排序（数值越小越靠前）',
+    state       TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否启用（0-否，1-是）',
     description VARCHAR(255) COMMENT '字典项描述',
     updated_at  DATETIME COMMENT '更新时间',
     updated_by  VARCHAR(50) COMMENT '更新人',
@@ -85,11 +86,11 @@ VALUES (1, 'gender', '性别', '用户性别类型'),
 -- ------------------------------
 -- 插入字典项（sys_dict_item 表）
 -- ------------------------------
-INSERT INTO `sys_dict_item` (`dict_id`, `item_key`, `item_value`, `has_default`, `sort`, `description`)
-VALUES (1, '1', '男', 0, 2, '男性'),
-       (1, '0', '女', 0, 3, '女性'),
-       (2, '1', '正常', 1, 1, '正常'),
-       (2, '0', '禁用', 0, 2, '禁用'),
-       (2, '-1', '锁定', 0, 3, '锁定'),
-       (3, 'user', '用户', 1, 1, '用户'),
-       (3, 'administrator', '开发者', 0, 9, '开发者');
+INSERT INTO `sys_dict_item` (`dict_id`, `item_key`, `item_value`, `has_default`, `sort`, `state`, `description`)
+VALUES (1, '1', '男', 0, 1, 1, '男性'),
+       (1, '0', '女', 0, 2, 1, '女性'),
+       (2, '1', '正常', 1, 1, 1, '正常'),
+       (2, '0', '禁用', 0, 2, 1, '禁用'),
+       (2, '-1', '锁定', 0, 3, 1, '锁定'),
+       (3, 'user', '用户', 1, 1, 1, '用户'),
+       (3, 'administrator', '开发者', 0, 9, 1, '开发者');

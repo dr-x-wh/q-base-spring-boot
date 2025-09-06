@@ -11,6 +11,7 @@
             <result property="itemValue" column="item_value" />
             <result property="hasDefault" column="has_default" />
             <result property="sort" column="sort" />
+            <result property="state" column="state" />
             <result property="description" column="description" />
             <result property="updatedAt" column="updated_at" />
             <result property="updatedBy" column="updated_by" />
@@ -19,7 +20,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,dict_id,item_key,item_value,has_default,sort,
+        id,dict_id,item_key,item_value,has_default,sort,state,
         description,updated_at,updated_by,created_at,created_by
     </sql>
 </mapper>

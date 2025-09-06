@@ -1,9 +1,9 @@
-package com.drx.system.service.impl;
+package com.drx.system.dict.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.drx.starter.entity.SysDict;
 import com.drx.starter.mapper.SysDictMapper;
-import com.drx.system.service.SysDictService;
+import com.drx.system.dict.service.SysDictService;
 import org.springframework.stereotype.Service;
 
 /**

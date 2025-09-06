@@ -38,6 +38,10 @@ public class DictItem implements Serializable {
      */
     private Integer sort;
     /**
+     * 是否启用
+     */
+    private Integer state;
+    /**
      * 字典项描述
      */
     private String description;

@@ -1,4 +1,4 @@
-package com.drx.system.service;
+package com.drx.system.dict.service;
 
 import com.drx.starter.entity.SysDict;
 import com.baomidou.mybatisplus.extension.service.IService;
