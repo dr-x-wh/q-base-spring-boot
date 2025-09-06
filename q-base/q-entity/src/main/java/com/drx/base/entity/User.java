@@ -3,7 +3,6 @@ package com.drx.base.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 用户表
@@ -26,14 +25,6 @@ public class User implements Serializable {
      */
     private String password;
     /**
-     * 昵称
-     */
-    private String nickname;
-    /**
-     * 性别
-     */
-    private String gender;
-    /**
      * 用户权限
      */
     private String role;
@@ -41,24 +32,4 @@ public class User implements Serializable {
      * 用户状态
      */
     private String state;
-    /**
-     * 头像URL
-     */
-    private String avatarUrl;
-    /**
-     * 更新时间
-     */
-    private Date updatedAt;
-    /**
-     * 更新人
-     */
-    private String updatedBy;
-    /**
-     * 创建时间
-     */
-    private Date createdAt;
-    /**
-     * 创建人
-     */
-    private String createdBy;
 }

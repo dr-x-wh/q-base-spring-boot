@@ -13,20 +13,24 @@ import java.util.Map;
 public class JwtTool {
 
     private static final String SECRET = "N6uAsGk2WXrLpYiyc90xhpc3zMdTFZgkVM0csk8KnQazLVz5huCVHZzC6714";
-    private static final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET);
 
 
     private static final long EXPIRATION_MS = 3 * 24 * 60 * 60 * 1000;
 
-    public static String createToken(Map<String, String> payload) {
+    public static String createToken(Map<String, String> payload, String secret, Long expires) {
+        Algorithm algorithm = Algorithm.HMAC256(secret);
         Date issuedAt = new Date();
-        Date expiresAt = new Date(issuedAt.getTime() + EXPIRATION_MS);
-        return JWT.create().withPayload(payload).withIssuedAt(issuedAt).withExpiresAt(expiresAt).sign(ALGORITHM);
+        Date expiresAt = new Date(issuedAt.getTime() + expires);
+        return JWT.create().withPayload(payload).withIssuedAt(issuedAt).withExpiresAt(expiresAt).sign(algorithm);
     }
 
+    public static String createToken(Map<String, String> payload) {
+        return JwtTool.createToken(payload, SECRET, EXPIRATION_MS);
+    }
 
-    public static Map<String, String> parseToken(String token) {
-        JWTVerifier verifier = JWT.require(ALGORITHM).build();
+    public static Map<String, String> parseToken(String token, String secret) {
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        JWTVerifier verifier = JWT.require(algorithm).build();
         DecodedJWT decodedJWT = verifier.verify(token);
         Map<String, Claim> originalClaims = decodedJWT.getClaims();
         Map<String, String> result = new HashMap<>();
@@ -40,6 +44,10 @@ public class JwtTool {
             }
         }
         return result;
+    }
+
+    public static Map<String, String> parseToken(String token) {
+        return JwtTool.parseToken(token, SECRET);
     }
 
 }
