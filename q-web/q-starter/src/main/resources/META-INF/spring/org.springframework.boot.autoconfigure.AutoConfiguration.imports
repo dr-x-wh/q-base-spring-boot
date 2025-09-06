@@ -2,3 +2,4 @@ com.drx.starter.config.MybatisConfig
 com.drx.starter.config.JacksonConfig
 com.drx.starter.config.RedisConfig
 com.drx.starter.repository.RedisService
+com.drx.starter.exception.GlobalExceptionHandler

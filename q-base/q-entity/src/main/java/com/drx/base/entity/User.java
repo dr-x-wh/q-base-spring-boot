@@ -1,28 +1,21 @@
-package com.drx.starter.entity;
+package com.drx.base.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 用户表
  *
  * @TableName sys_user
  */
-@TableName(value = "sys_user")
 @Data
-public class SysUser implements Serializable {
-    @TableField(exist = false)
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * ID
      */
-    @TableId(type = IdType.AUTO)
     private Long id;
     /**
      * 用户名
@@ -55,7 +48,7 @@ public class SysUser implements Serializable {
     /**
      * 更新时间
      */
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
     /**
      * 更新人
      */
@@ -63,7 +56,7 @@ public class SysUser implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createdAt;
+    private Date createdAt;
     /**
      * 创建人
      */

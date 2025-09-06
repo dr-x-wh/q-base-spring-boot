@@ -20,8 +20,12 @@ public class Result<T> {
         return Result.success(null);
     }
 
+    public static <Void> Result<Void> error(String message) {
+        return new Result<>(-1, message, null);
+    }
+
     public static <Void> Result<Void> error() {
-        return new Result<>(-1, "ERROR", null);
+        return Result.error("ERROR");
     }
 
 }

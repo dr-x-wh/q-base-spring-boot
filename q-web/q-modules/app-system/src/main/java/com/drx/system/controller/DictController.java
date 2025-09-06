@@ -33,15 +33,19 @@ public class DictController {
         List<SysDict> dict = (List<SysDict>) redisService.getValue("dict");
         if (dict == null) {
             dict = sysDictService.list();
-            redisService.setValue("dict", dict);
+            redisService.setValue("dict", dict, (long) (10 * 60));
         }
         return Result.success(dict);
     }
 
     @GetMapping("/{code}")
     public Result<List<SysDictItem>> itemListByCode(@PathVariable String code) {
-
-        return Result.error();
+        List<SysDictItem> dict_item = (List<SysDictItem>) redisService.getValue(String.format("dict_%s", code));
+        if (dict_item == null) {
+            dict_item = sysDictItemService.listByCode(code);
+            redisService.setValue(String.format("dict_%s", code), dict_item, (long) (10 * 60));
+        }
+        return Result.success(dict_item);
     }
 
 }

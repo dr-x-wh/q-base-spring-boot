@@ -1,10 +1,15 @@
 package com.drx.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.drx.starter.entity.SysDict;
 import com.drx.starter.entity.SysDictItem;
 import com.drx.starter.mapper.SysDictItemMapper;
 import com.drx.system.service.SysDictItemService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author tom
@@ -14,8 +19,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDictItem> implements SysDictItemService {
 
+
+    private final BaseMapper<SysDict> sysDictMapper;
+
+    public SysDictItemServiceImpl(BaseMapper<SysDict> sysDictMapper) {
+        this.sysDictMapper = sysDictMapper;
+    }
+
+    @Override
+    public List<SysDictItem> listByCode(String code) {
+        LambdaQueryWrapper<SysDict> dictWrapper = new LambdaQueryWrapper<>();
+        dictWrapper.eq(SysDict::getCode, code);
+        SysDict sysDict = sysDictMapper.selectOne(dictWrapper);
+        LambdaQueryWrapper<SysDictItem> dictItemWrapper = new LambdaQueryWrapper<>();
+        dictItemWrapper.eq(SysDictItem::getDictId, sysDict.getId());
+        return baseMapper.selectList(dictItemWrapper);
+    }
+
 }
-
-
-
-
