@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.drx.starter.mapper.SysDictItemMapper">
+
+    <resultMap id="BaseResultMap" type="com.drx.starter.entity.SysDictItem">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="dict_code" column="dict_code" jdbcType="VARCHAR"/>
+            <result property="key" column="key" jdbcType="VARCHAR"/>
+            <result property="value" column="value" jdbcType="VARCHAR"/>
+            <result property="has_default" column="has_default" jdbcType="TINYINT"/>
+            <result property="sort" column="sort" jdbcType="TINYINT"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="updated_at" column="updated_at" jdbcType="TIMESTAMP"/>
+            <result property="updated_by" column="updated_by" jdbcType="VARCHAR"/>
+            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="created_by" column="created_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,dict_code,key,value,has_default,sort,
+        description,updated_at,updated_by,created_at,created_by
+    </sql>
+</mapper>

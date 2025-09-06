@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.drx.starter.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.drx.starter.entity.SysUser">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="VARCHAR"/>
+            <result property="role" column="role" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="avatar_url" column="avatar_url" jdbcType="VARCHAR"/>
+            <result property="updated_at" column="updated_at" jdbcType="TIMESTAMP"/>
+            <result property="updated_by" column="updated_by" jdbcType="VARCHAR"/>
+            <result property="created_at" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="created_by" column="created_by" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,password,nickname,gender,role,
+        state,avatar_url,updated_at,updated_by,created_at,
+        created_by
+    </sql>
+</mapper>
