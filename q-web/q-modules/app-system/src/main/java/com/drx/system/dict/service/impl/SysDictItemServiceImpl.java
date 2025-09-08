@@ -8,6 +8,7 @@ import com.drx.starter.entity.SysDictItem;
 import com.drx.starter.mapper.SysDictItemMapper;
 import com.drx.system.dict.service.SysDictItemService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
         LambdaQueryWrapper<SysDict> dictWrapper = new LambdaQueryWrapper<>();
         dictWrapper.eq(SysDict::getCode, code);
         SysDict sysDict = sysDictMapper.selectOne(dictWrapper);
+        Assert.notNull(sysDict, "字典不存在: " + code);
         LambdaQueryWrapper<SysDictItem> dictItemWrapper = new LambdaQueryWrapper<>();
         dictItemWrapper.allEq(Map.of(SysDictItem::getDictId, sysDict.getId(), SysDictItem::getState, 1));
         return baseMapper.selectList(dictItemWrapper);
@@ -42,6 +44,7 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
         LambdaQueryWrapper<SysDict> dictWrapper = new LambdaQueryWrapper<>();
         dictWrapper.eq(SysDict::getCode, code);
         SysDict sysDict = sysDictMapper.selectOne(dictWrapper);
+        Assert.notNull(sysDict, "字典不存在: " + code);
         LambdaQueryWrapper<SysDictItem> dictItemWrapper = new LambdaQueryWrapper<>();
         dictItemWrapper.allEq(Map.of(SysDictItem::getDictId, sysDict.getId()));
         return baseMapper.selectList(dictItemWrapper);

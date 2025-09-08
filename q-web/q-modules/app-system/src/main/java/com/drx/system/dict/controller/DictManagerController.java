@@ -1,10 +1,13 @@
 package com.drx.system.dict.controller;
 
+import com.drx.base.entity.User;
+import com.drx.base.tools.context.UserContext;
 import com.drx.base.tools.response.Result;
 import com.drx.starter.entity.SysDict;
 import com.drx.starter.entity.SysDictItem;
 import com.drx.system.dict.service.SysDictItemService;
 import com.drx.system.dict.service.SysDictService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/dictManager")
 public class DictManagerController {
@@ -24,8 +28,10 @@ public class DictManagerController {
         this.sysDictItemService = sysDictItemService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public Result<List<SysDict>> list() {
+        User user = UserContext.get();
+        log.debug("{}", user.toString());
         return Result.success(sysDictService.list());
     }
 

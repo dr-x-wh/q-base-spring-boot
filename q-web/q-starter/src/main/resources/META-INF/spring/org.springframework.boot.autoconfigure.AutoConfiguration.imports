@@ -3,3 +3,4 @@ com.drx.starter.config.JacksonConfig
 com.drx.starter.config.RedisConfig
 com.drx.starter.repository.RedisService
 com.drx.starter.exception.GlobalExceptionHandler
+com.drx.starter.filter.UserFilter

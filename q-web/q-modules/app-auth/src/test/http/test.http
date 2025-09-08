@@ -1,0 +1,14 @@
+GET http://localhost:8080/system/dictManager
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoickcyN2t6THViVmtpR2dCQS1pUFNPbnpUb1ZCYlA2dXJCQXZScU5YTTRxWT0iLCJpZCI6IjEiLCJpYXQiOjE3NTczMjgxMjgsImV4cCI6MTc1NzU4NzMyOH0.cDIAc7n7ICOa_livwfM5RhJnZ_VsjIbM3gmnB0t5ifA
+
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "xwh",
+  "password": "123"
+}
+
+###
