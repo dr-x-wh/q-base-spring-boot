@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `sys_dict_item`
 -- 插入字典类型（sys_dict 表）
 -- ------------------------------
 INSERT INTO `sys_dict` (`id`, `code`, `name`, `description`)
-VALUES (1, 'gender', '性别', '用户性别类型'),
+VALUES (1, 'gender', '性别', '性别类型'),
        (2, 'sys_user_state', '用户状态', '用户账号状态类型'),
        (3, 'sys_user_role', '用户权限', '用户账号权限');
 
@@ -93,4 +93,4 @@ VALUES (1, '1', '男', 0, 1, 1, '男性'),
        (2, '0', '禁用', 0, 2, 1, '禁用'),
        (2, '-1', '锁定', 0, 3, 1, '锁定'),
        (3, 'user', '用户', 1, 1, 1, '用户'),
-       (3, 'administrator', '开发者', 0, 9, 1, '开发者');
+       (3, 'administrator', '开发者', 0, 99, 1, '开发者');

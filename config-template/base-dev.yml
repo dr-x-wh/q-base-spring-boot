@@ -3,3 +3,6 @@ logging:
     root: info
     com:
       drx: debug
+
+jwt:
+  secret: 4nyyHnIKYKqq8jXhJ2yPI6OUmiAPRYnNr2KRxfRpTUK5syWemm2qVfdy33im

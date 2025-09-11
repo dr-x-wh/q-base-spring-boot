@@ -1,4 +1,4 @@
-package com.drx.system.user.pojo.dto;
+package com.drx.auth.pojo.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

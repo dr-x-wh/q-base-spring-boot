@@ -4,23 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.drx.starter.mapper.SysDictItemMapper">
 
-    <resultMap id="BaseResultMap" type="com.drx.starter.entity.SysDictItem">
-            <id property="id" column="id" />
-            <result property="dictId" column="dict_id" />
-            <result property="itemKey" column="item_key" />
-            <result property="itemValue" column="item_value" />
-            <result property="hasDefault" column="has_default" />
-            <result property="sort" column="sort" />
-            <result property="state" column="state" />
-            <result property="description" column="description" />
-            <result property="updatedAt" column="updated_at" />
-            <result property="updatedBy" column="updated_by" />
-            <result property="createdAt" column="created_at" />
-            <result property="createdBy" column="created_by" />
-    </resultMap>
-
     <sql id="Base_Column_List">
         id,dict_id,item_key,item_value,has_default,sort,state,
         description,updated_at,updated_by,created_at,created_by
     </sql>
+
+    <select id="selectByDictCode" resultType="com.drx.starter.entity.SysDictItem">
+        select sdi.id,
+               sdi.dict_id,
+               sdi.item_key,
+               sdi.item_value,
+               sdi.has_default,
+               sdi.sort,
+               sdi.state,
+               sdi.description,
+               sdi.updated_at,
+               sdi.updated_by,
+               sdi.created_at,
+               sdi.created_by
+        from sys_dict_item sdi
+                 left join sys_dict sd on sd.id = sdi.dict_id
+        where sd.code = #{code}
+    </select>
 </mapper>

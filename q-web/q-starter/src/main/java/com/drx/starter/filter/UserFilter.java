@@ -1,6 +1,7 @@
 package com.drx.starter.filter;
 
 import com.drx.base.entity.User;
+import com.drx.base.enums.USER_STATE;
 import com.drx.base.tools.context.UserContext;
 import com.drx.base.tools.response.Result;
 import com.drx.base.tools.security.JwtTool;
@@ -15,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -39,7 +39,7 @@ public class UserFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
         try {
             String authHeader = request.getHeader("Authorization");
             if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -50,6 +50,7 @@ public class UserFilter extends OncePerRequestFilter {
                 String cacheSession = (String) redisService.getValue(String.format("session_%s", id));
                 if (session.equals(cacheSession)) {
                     SysUser sysUser = sysUserMapper.selectById(Long.parseLong(id));
+                    Assert.isTrue(sysUser.getState().equals(USER_STATE.NORMAL.getKey()), "用户账户异常");
                     Assert.notNull(sysUser, "用户信息不存在");
                     User user = new User();
                     BeanUtils.copyProperties(sysUser, user);
@@ -61,6 +62,7 @@ public class UserFilter extends OncePerRequestFilter {
             try {
                 Result<Void> result = Result.error("user filter error");
                 String resultStr = jacksonObjectMapper.writeValueAsString(result);
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 response.getWriter().write(resultStr);
                 response.getWriter().flush();
             } catch (Exception ex) {
@@ -70,6 +72,7 @@ public class UserFilter extends OncePerRequestFilter {
             try {
                 Result<Void> result = Result.error("user info error");
                 String resultStr = jacksonObjectMapper.writeValueAsString(result);
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.getWriter().write(resultStr);
                 response.getWriter().flush();
             } catch (Exception ex) {

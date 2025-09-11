@@ -3,6 +3,7 @@ package com.drx.system.dict.controller;
 import com.drx.base.entity.User;
 import com.drx.base.tools.context.UserContext;
 import com.drx.base.tools.response.Result;
+import com.drx.starter.annotation.RequireUser;
 import com.drx.starter.entity.SysDict;
 import com.drx.starter.entity.SysDictItem;
 import com.drx.system.dict.service.SysDictItemService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @Slf4j
+@RequireUser
 @RestController
 @RequestMapping("/dictManager")
 public class DictManagerController {
