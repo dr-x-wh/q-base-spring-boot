@@ -3,7 +3,7 @@ package com.drx.system.dict.controller;
 import com.drx.base.tools.response.Result;
 import com.drx.starter.entity.SysDictItem;
 import com.drx.starter.repository.RedisService;
-import com.drx.system.dict.pojo.DictItemResult;
+import com.drx.system.dict.pojo.result.DictItemResult;
 import com.drx.system.dict.service.SysDictItemService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.GetMapping;

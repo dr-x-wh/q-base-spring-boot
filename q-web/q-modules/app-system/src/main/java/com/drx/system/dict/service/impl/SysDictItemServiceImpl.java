@@ -27,19 +27,13 @@ public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDi
 
     @Override
     public List<SysDictItem> listByCode(String code) {
-        List<SysDictItem> value = (List<SysDictItem>) redisService.getValue(String.format("dict_%s", code));
-        if (value != null) {
-            return value;
-        }
         LambdaQueryWrapper<SysDict> dictWrapper = new LambdaQueryWrapper<>();
         dictWrapper.eq(SysDict::getCode, code);
         SysDict sysDict = sysDictMapper.selectOne(dictWrapper);
         Assert.notNull(sysDict, "字典不存在: " + code);
         LambdaQueryWrapper<SysDictItem> dictItemWrapper = new LambdaQueryWrapper<>();
-        dictItemWrapper.allEq(Map.of(SysDictItem::getDictId, sysDict.getId(), SysDictItem::getState, 1));
-        List<SysDictItem> sysDictItems = baseMapper.selectList(dictItemWrapper);
-        redisService.setValue(String.format("dict_%s", code), sysDictItems);
-        return sysDictItems;
+        dictItemWrapper.allEq(Map.of(SysDictItem::getDictId, sysDict.getId(), SysDictItem::getState, "1"));
+        return baseMapper.selectList(dictItemWrapper);
     }
 
     @Override

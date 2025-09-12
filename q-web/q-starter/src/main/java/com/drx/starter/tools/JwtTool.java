@@ -15,17 +15,17 @@ public class JwtTool {
     private static final String SECRET = "N6uAsGk2WXrLpYiyc90xhpc3zMdTFZgkVM0csk8KnQazLVz5huCVHZzC6714";
 
 
-    private static final long EXPIRATION_MS = 3 * 24 * 60 * 60 * 1000;
+    private static final long EXPIRATION = 3 * 24 * 60 * 60;
 
     public static String createToken(Map<String, String> payload, String secret, Long expires) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         Date issuedAt = new Date();
-        Date expiresAt = new Date(issuedAt.getTime() + expires);
+        Date expiresAt = new Date(issuedAt.getTime() + expires * 1000);
         return JWT.create().withPayload(payload).withIssuedAt(issuedAt).withExpiresAt(expiresAt).sign(algorithm);
     }
 
     public static String createToken(Map<String, String> payload) {
-        return JwtTool.createToken(payload, SECRET, EXPIRATION_MS);
+        return JwtTool.createToken(payload, SECRET, EXPIRATION);
     }
 
     public static Map<String, String> parseToken(String token, String secret) {

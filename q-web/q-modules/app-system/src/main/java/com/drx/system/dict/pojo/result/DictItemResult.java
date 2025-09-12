@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class DictItemResult {
-    private String itemKey;
-    private String itemValue;
-    private Integer hasDefault;
+    private String code;
+    private String name;
+    private String description;
+    private Integer isDefault;
     private Integer sort;
 }

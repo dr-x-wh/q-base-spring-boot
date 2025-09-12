@@ -1,7 +1,6 @@
 package com.drx.auth.controller;
 
-import com.drx.auth.pojo.dto.LoginDTO;
-import com.drx.auth.pojo.dto.RegisterDTO;
+import com.drx.auth.pojo.form.LoginForm;
 import com.drx.auth.service.SysUserService;
 import com.drx.base.tools.response.Result;
 import com.drx.starter.annotation.RequireUser;
@@ -23,8 +22,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result<String> login(@RequestBody @Valid LoginDTO dto) {
-        String token = sysUserService.login(dto);
+    public Result<String> login(@RequestBody @Valid LoginForm form) {
+        String token = sysUserService.login(form);
         return Result.success(token);
     }
 
@@ -32,19 +31,6 @@ public class UserController {
     @PostMapping("/logout")
     public Result<String> logout() {
         sysUserService.logout();
-        return Result.success();
-    }
-
-    @PostMapping("/register")
-    public Result<Void> register(@RequestBody @Valid RegisterDTO dto) {
-        sysUserService.register(dto);
-        return Result.success();
-    }
-
-    @RequireUser
-    @PostMapping("/signOut")
-    public Result<Void> signOut() {
-        sysUserService.signOut();
         return Result.success();
     }
 

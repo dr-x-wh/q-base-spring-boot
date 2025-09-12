@@ -11,4 +11,6 @@ public interface SysUserRoleMapper extends BaseMapper<SysUserRole> {
 
     List<SysRole> getAllByUserId(@Param("userId") Long userId);
 
+    int createByCode(@Param("userId") Long userId, @Param("code") String code, @Param("createdBy") String createdBy);
+
 }

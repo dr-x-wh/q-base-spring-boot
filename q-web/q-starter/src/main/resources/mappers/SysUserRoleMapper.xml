@@ -5,7 +5,7 @@
 <mapper namespace="com.drx.starter.mapper.SysUserRoleMapper">
 
     <sql id="Base_Column_List">
-        user_id,role_id,created_at,created_by
+        id,user_id,role_id,created_at,created_by
     </sql>
 
     <select id="getAllByUserId" resultType="com.drx.starter.entity.SysRole">
@@ -15,5 +15,11 @@
         left join sys_role sr on sur.role_id = sr.id
         where sur.user_id = #{userId} and sr.state = '1'
     </select>
+
+    <insert id="createByCode">
+        INSERT INTO sys_user_role
+            (user_id, role_id, created_by)
+        values (#{userId}, (SELECT id FROM sys_role WHERE code = #{code}), #{createdBy})
+    </insert>
 
 </mapper>

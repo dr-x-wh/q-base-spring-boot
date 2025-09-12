@@ -1,15 +1,13 @@
 package com.drx.auth.service;
 
-import com.drx.auth.pojo.dto.LoginDTO;
-import com.drx.auth.pojo.dto.RegisterDTO;
-import com.drx.starter.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.drx.auth.pojo.form.LoginForm;
+import com.drx.starter.entity.SysUser;
 
 public interface SysUserService extends IService<SysUser> {
 
-    String login(LoginDTO dto);
+    String login(LoginForm form);
+
     void logout();
-    void register(RegisterDTO dto);
-    void signOut();
 
 }

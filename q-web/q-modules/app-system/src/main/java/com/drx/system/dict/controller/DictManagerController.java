@@ -30,13 +30,13 @@ public class DictManagerController {
         this.sysDictItemService = sysDictItemService;
     }
 
+    @RequireUser({"admin"})
     @GetMapping
     public Result<List<SysDict>> list() {
-        User user = UserContext.get();
-        log.debug("{}", user.toString());
         return Result.success(sysDictService.list());
     }
 
+    @RequireUser({"admin"})
     @GetMapping("/{code}")
     public Result<List<SysDictItem>> itemListByCode(@PathVariable String code) {
         return Result.success(sysDictItemService.allListByCode(code));

@@ -1,10 +1,10 @@
-package com.drx.auth.pojo.dto;
+package com.drx.auth.pojo.form;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class LoginDTO {
+public class LoginForm {
 
     @NotBlank
     private String username;

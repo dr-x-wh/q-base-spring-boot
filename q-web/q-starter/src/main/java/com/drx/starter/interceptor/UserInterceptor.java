@@ -29,7 +29,7 @@ public class UserInterceptor implements HandlerInterceptor {
         if (requireUser != null) {
             User user = UserContext.get();
             if (user == null) {
-                WebTool.sendError(response, HttpServletResponse.SC_UNAUTHORIZED, "Please log in and try again");
+                WebTool.sendError(response, HttpServletResponse.SC_UNAUTHORIZED, "Please login and try again");
                 return false;
             } else {
                 String[] roles = requireUser.value();
@@ -39,7 +39,7 @@ public class UserInterceptor implements HandlerInterceptor {
                 Set<String> rolesSet = new HashSet<>(Arrays.asList(roles));
                 HashSet<String> userRolesSet = new HashSet<>(user.getRoles());
                 boolean hasRoles = userRolesSet.containsAll(rolesSet);
-                if (hasRoles) {
+                if (hasRoles || userRolesSet.contains("admin") || userRolesSet.contains("administrator")) {
                     return true;
                 } else {
                     WebTool.sendError(response, HttpServletResponse.SC_UNAUTHORIZED, "Deny access");

@@ -55,11 +55,12 @@ CREATE TABLE IF NOT EXISTS sys_role
 -- ------------------------------
 CREATE TABLE IF NOT EXISTS sys_user_role
 (
+    id         BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT 'ID',
     user_id    BIGINT UNSIGNED NOT NULL COMMENT '用户',
     role_id    BIGINT UNSIGNED NOT NULL COMMENT '权限',
     created_at DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     created_by VARCHAR(63)     NOT NULL DEFAULT 'system' COMMENT '创建人',
-    PRIMARY KEY (user_id, role_id),
+    UNIQUE KEY uniq_user_role (user_id, role_id),
     INDEX idx_user (user_id),
     INDEX idx_role (role_id),
     FOREIGN KEY (user_id) REFERENCES sys_user (id) ON DELETE CASCADE,

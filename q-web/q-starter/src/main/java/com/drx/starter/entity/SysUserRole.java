@@ -15,15 +15,19 @@ import lombok.Data;
 @Data
 public class SysUserRole {
     /**
+     * ID
+     */
+    @TableId(type = IdType.AUTO)
+    private Long id;
+
+    /**
      * 用户
      */
-    @TableId
     private Long userId;
 
     /**
      * 权限
      */
-    @TableId
     private Long roleId;
 
     /**
