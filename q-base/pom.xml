@@ -14,18 +14,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>q-entity</module>
         <module>q-tools</module>
         <module>q-api</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.drx</groupId>
-                <artifactId>q-entity</artifactId>
-                <version>${revision}</version>
-            </dependency>
             <dependency>
                 <groupId>com.drx</groupId>
                 <artifactId>q-api</artifactId>

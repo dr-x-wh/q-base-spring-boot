@@ -1,8 +1,8 @@
-package com.drx.base.tools.security;
+package com.drx.starter.tools;
 
 import java.security.SecureRandom;
 
-public class TokenGenerator {
+public class TokenGeneratorTool {
     private static final String ALLOWED_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final SecureRandom secureRandom = new SecureRandom();
 

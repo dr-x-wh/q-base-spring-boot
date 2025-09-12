@@ -8,12 +8,12 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 字典项表
- * @TableName sys_dict_item
+ * 权限表
+ * @TableName sys_role
  */
-@TableName(value ="sys_dict_item")
+@TableName(value ="sys_role")
 @Data
-public class SysDictItem {
+public class SysRole {
     /**
      * ID
      */
@@ -21,34 +21,19 @@ public class SysDictItem {
     private Long id;
 
     /**
-     * 所属字典类型编码
-     */
-    private Long dictId;
-
-    /**
-     * 字典项编码
+     * 权限标识
      */
     private String code;
 
     /**
-     * 字典项名称
+     * 权限名称
      */
     private String name;
 
     /**
-     * 字典项描述
+     * 权限名称
      */
     private String description;
-
-    /**
-     * 是否默认值
-     */
-    private Integer isDefault;
-
-    /**
-     * 排序（数值越小越靠前）
-     */
-    private Integer sort;
 
     /**
      * 状态，1启用，0禁用

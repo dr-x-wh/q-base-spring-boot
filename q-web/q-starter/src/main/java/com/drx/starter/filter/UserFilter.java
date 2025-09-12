@@ -1,13 +1,14 @@
 package com.drx.starter.filter;
 
 import com.drx.base.entity.User;
-import com.drx.base.enums.USER_STATE;
 import com.drx.base.tools.context.UserContext;
 import com.drx.base.tools.response.Result;
-import com.drx.base.tools.security.JwtTool;
+import com.drx.starter.entity.SysRole;
 import com.drx.starter.entity.SysUser;
 import com.drx.starter.mapper.SysUserMapper;
+import com.drx.starter.mapper.SysUserRoleMapper;
 import com.drx.starter.repository.RedisService;
+import com.drx.starter.tools.JwtTool;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,11 +17,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -29,31 +32,36 @@ public class UserFilter extends OncePerRequestFilter {
     private final RedisService redisService;
     private final SysUserMapper sysUserMapper;
     private final ObjectMapper jacksonObjectMapper;
+    private final SysUserRoleMapper sysUserRoleMapper;
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    public UserFilter(SysUserMapper sysUserMapper, RedisService redisService, ObjectMapper jacksonObjectMapper) {
+    public UserFilter(SysUserMapper sysUserMapper, RedisService redisService, ObjectMapper jacksonObjectMapper, SysUserRoleMapper sysUserRoleMapper) {
         this.sysUserMapper = sysUserMapper;
         this.redisService = redisService;
         this.jacksonObjectMapper = jacksonObjectMapper;
+        this.sysUserRoleMapper = sysUserRoleMapper;
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) {
         try {
             String authHeader = request.getHeader("Authorization");
-            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            if (authHeader != null && authHeader.length() > 7 && authHeader.startsWith("Bearer ")) {
                 String token = authHeader.substring(7);
                 Map<String, String> map = JwtTool.parseToken(token, jwtSecret);
                 String id = map.get("id");
                 String session = map.get("session");
                 String cacheSession = (String) redisService.getValue(String.format("session_%s", id));
                 if (session.equals(cacheSession)) {
-                    SysUser sysUser = sysUserMapper.selectById(Long.parseLong(id));
-                    Assert.isTrue(sysUser.getState().equals(USER_STATE.NORMAL.getKey()), "用户账户异常");
+                    Long userId = Long.parseLong(id);
+                    SysUser sysUser = sysUserMapper.getOneById(userId);
                     Assert.notNull(sysUser, "用户信息不存在");
                     User user = new User();
                     BeanUtils.copyProperties(sysUser, user);
+                    List<SysRole> roles = sysUserRoleMapper.getAllByUserId(userId);
+                    List<String> list = roles.stream().map(SysRole::getCode).toList();
+                    user.setRoles(list);
                     UserContext.set(user);
                 }
             }

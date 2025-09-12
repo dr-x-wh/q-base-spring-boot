@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.drx.starter.mapper.SysUserRoleMapper">
+
+    <sql id="Base_Column_List">
+        user_id,role_id,created_at,created_by
+    </sql>
+
+    <select id="getAllByUserId" resultType="com.drx.starter.entity.SysRole">
+        select sr.id,sr.code,sr.name,sr.description,sr.state,sr.updated_at,
+               sr.updated_by,sr.created_at,sr.created_by
+        from sys_user_role sur
+        left join sys_role sr on sur.role_id = sr.id
+        where sur.user_id = #{userId} and sr.state = '1'
+    </select>
+
+</mapper>

@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
 
@@ -14,7 +13,7 @@ import lombok.Data;
  */
 @TableName(value ="sys_user")
 @Data
-public class SysUser implements Serializable {
+public class SysUser {
     /**
      * ID
      */
@@ -37,24 +36,19 @@ public class SysUser implements Serializable {
     private String nickname;
 
     /**
+     * 头像URL
+     */
+    private String avatarUrl;
+
+    /**
      * 性别
      */
     private String gender;
 
     /**
-     * 用户权限
-     */
-    private String role;
-
-    /**
-     * 用户状态
+     * 状态，1启用，0禁用
      */
     private String state;
-
-    /**
-     * 头像URL
-     */
-    private String avatarUrl;
 
     /**
      * 更新时间
@@ -75,7 +69,4 @@ public class SysUser implements Serializable {
      * 创建人
      */
     private String createdBy;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

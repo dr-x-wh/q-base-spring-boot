@@ -1,22 +1,25 @@
 package com.drx.starter.interceptor;
 
 import com.drx.base.entity.User;
-import com.drx.base.enums.USER_ROLE;
 import com.drx.base.tools.context.UserContext;
 import com.drx.starter.annotation.RequireUser;
 import com.drx.starter.tools.WebTool;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class UserInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler) throws Exception {
         if (!(handler instanceof HandlerMethod handlerMethod)) {
             return true;
         }
@@ -29,14 +32,14 @@ public class UserInterceptor implements HandlerInterceptor {
                 WebTool.sendError(response, HttpServletResponse.SC_UNAUTHORIZED, "Please log in and try again");
                 return false;
             } else {
-                String role = requireUser.value();
-                if (role.isEmpty()) {
+                String[] roles = requireUser.value();
+                if (roles.length == 0) {
                     return true;
                 }
-                String userRole = user.getRole();
-                Integer userSort = USER_ROLE.valueOf(userRole.toUpperCase()).getSort();
-                Integer roleSort = USER_ROLE.valueOf(role.toUpperCase()).getSort();
-                if (roleSort <= userSort) {
+                Set<String> rolesSet = new HashSet<>(Arrays.asList(roles));
+                HashSet<String> userRolesSet = new HashSet<>(user.getRoles());
+                boolean hasRoles = userRolesSet.containsAll(rolesSet);
+                if (hasRoles) {
                     return true;
                 } else {
                     WebTool.sendError(response, HttpServletResponse.SC_UNAUTHORIZED, "Deny access");

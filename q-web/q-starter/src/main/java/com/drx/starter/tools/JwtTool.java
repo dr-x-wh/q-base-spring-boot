@@ -1,4 +1,4 @@
-package com.drx.base.tools.security;
+package com.drx.starter.tools;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

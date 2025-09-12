@@ -48,11 +48,6 @@
             </dependency>
             <dependency>
                 <groupId>com.drx</groupId>
-                <artifactId>q-entity</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.drx</groupId>
                 <artifactId>q-tools</artifactId>
                 <version>${revision}</version>
             </dependency>

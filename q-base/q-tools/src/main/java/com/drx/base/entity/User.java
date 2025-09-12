@@ -2,27 +2,20 @@ package com.drx.base.entity;
 
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-/**
- * 用户
- *
- * @TableName sys_user
- */
 @Data
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class User {
     private Long id;
     private String username;
     private String nickname;
-    private String gender;
-    private String role;
-    private String state;
     private String avatarUrl;
+    private String gender;
     private Date updatedAt;
     private String updatedBy;
     private Date createdAt;
     private String createdBy;
+
+    private List<String> roles;
 }

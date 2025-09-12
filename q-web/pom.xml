@@ -26,10 +26,6 @@
         </dependency>
         <dependency>
             <groupId>com.drx</groupId>
-            <artifactId>q-entity</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.drx</groupId>
             <artifactId>q-tools</artifactId>
         </dependency>
     </dependencies>
