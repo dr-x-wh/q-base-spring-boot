@@ -1,18 +1,16 @@
-package com.drx.starter.repository;
+package com.drx.cache.repository;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class RedisService {
-
+public class CacheClient {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
-    public RedisService(RedisTemplate<String, Object> redisTemplate) {
+    public CacheClient(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 

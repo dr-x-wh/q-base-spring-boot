@@ -1,4 +1,4 @@
-package com.drx.starter.config;
+package com.drx.cache.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

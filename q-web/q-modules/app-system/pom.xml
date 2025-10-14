@@ -13,4 +13,44 @@
     <artifactId>app-system</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-utils</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

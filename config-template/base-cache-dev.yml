@@ -1,9 +1,8 @@
 spring:
   data:
     redis:
-      host: dr-x.top
+      host: localhost
       port: 6379
-      password: 123qqq...A
       database: 0
       lettuce:
         pool:
