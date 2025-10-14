@@ -1,8 +1,8 @@
 package com.drx.system.user.controller;
 
-import com.drx.base.entity.User;
+import com.drx.api.domain.LoginUser;
 import com.drx.base.tools.context.UserContext;
-import com.drx.base.tools.response.Result;
+import com.drx.base.response.Result;
 import com.drx.starter.annotation.RequireUser;
 import com.drx.system.user.pojo.form.RegisterForm;
 import com.drx.system.user.service.SysUserService;
@@ -22,7 +22,7 @@ public class UserController {
 
     @RequireUser
     @GetMapping()
-    public Result<User> getInfo() {
+    public Result<LoginUser> getInfo() {
         return Result.success(UserContext.get());
     }
 

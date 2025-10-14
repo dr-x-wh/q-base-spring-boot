@@ -5,27 +5,20 @@
 
     <parent>
         <groupId>com.drx</groupId>
-        <artifactId>q-base-spring-boot</artifactId>
+        <artifactId>q-web</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>q-base</artifactId>
+    <artifactId>q-common</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>q-core</module>
-        <module>q-api</module>
+        <module>q-cache</module>
+        <module>q-db</module>
+        <module>q-security</module>
+        <module>q-starter</module>
+        <module>q-utils</module>
     </modules>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.drx</groupId>
-                <artifactId>q-core</artifactId>
-                <version>${revision}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
 </project>

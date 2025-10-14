@@ -2,7 +2,7 @@ package com.drx.system.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.drx.base.entity.User;
+import com.drx.api.domain.LoginUser;
 import com.drx.base.enums.USER_ROLE;
 import com.drx.base.tools.context.UserContext;
 import com.drx.starter.entity.SysUser;
@@ -49,7 +49,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public void cancel() {
-        User user = UserContext.get();
+        LoginUser user = UserContext.get();
         int i = baseMapper.deleteById(user.getId());
         Assert.isTrue(i != 0, "注销失败");
     }

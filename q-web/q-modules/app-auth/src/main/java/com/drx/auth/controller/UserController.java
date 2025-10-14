@@ -2,7 +2,7 @@ package com.drx.auth.controller;
 
 import com.drx.auth.pojo.form.LoginForm;
 import com.drx.auth.service.SysUserService;
-import com.drx.base.tools.response.Result;
+import com.drx.base.response.Result;
 import com.drx.starter.annotation.RequireUser;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;

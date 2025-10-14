@@ -15,7 +15,7 @@
 
     <modules>
         <module>app-gateway</module>
-        <module>q-starter</module>
+        <module>q-common</module>
         <module>q-modules</module>
     </modules>
 
@@ -24,17 +24,33 @@
             <groupId>com.drx</groupId>
             <artifactId>q-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.drx</groupId>
-            <artifactId>q-tools</artifactId>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.drx</groupId>
+                <artifactId>q-cache</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.drx</groupId>
+                <artifactId>q-db</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.drx</groupId>
+                <artifactId>q-security</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.drx</groupId>
                 <artifactId>q-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.drx</groupId>
+                <artifactId>q-utils</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>
