@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.drx.db.mapper.SysDictItemMapper">
+
+    <sql id="Base_Column_List">
+        id,dict_id,code,name,description,is_default,
+        sort,state,updated_at,updated_by,created_at,
+        created_by
+    </sql>
+
+</mapper>

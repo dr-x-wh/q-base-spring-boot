@@ -1,6 +1,6 @@
 package com.drx.starter.exception;
 
-import com.drx.base.response.Result;
+import com.drx.core.response.Result;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.MethodArgumentNotValidException;

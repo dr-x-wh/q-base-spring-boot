@@ -1,6 +1,6 @@
 package com.drx.system.dict.controller;
 
-import com.drx.base.response.Result;
+import com.drx.core.response.Result;
 import com.drx.starter.annotation.RequireUser;
 import com.drx.starter.entity.SysDict;
 import com.drx.starter.entity.SysDictItem;
