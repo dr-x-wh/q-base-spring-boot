@@ -13,6 +13,29 @@
     <artifactId>app-auth</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-db</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.drx</groupId>
+            <artifactId>q-utils</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

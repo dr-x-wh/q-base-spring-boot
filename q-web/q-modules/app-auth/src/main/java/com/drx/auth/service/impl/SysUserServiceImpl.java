@@ -4,13 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.drx.auth.pojo.form.LoginForm;
 import com.drx.auth.service.SysUserService;
-import com.drx.core.tools.context.UserContext;
-import com.drx.starter.entity.SysUser;
-import com.drx.starter.mapper.SysUserMapper;
-import com.drx.starter.repository.RedisService;
-import com.drx.starter.tools.BcryptTool;
-import com.drx.starter.tools.JwtTool;
-import com.drx.starter.tools.TokenGeneratorTool;
+import com.drx.cache.repository.CacheClient;
+import com.drx.db.entity.SysUser;
+import com.drx.db.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -20,12 +16,12 @@ import java.util.HashMap;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
-    private final RedisService redisService;
+    private final CacheClient cacheClient;
     @Value("${jwt.secret}")
     private String tokenSecret;
 
-    public SysUserServiceImpl(RedisService redisService) {
-        this.redisService = redisService;
+    public SysUserServiceImpl(CacheClient cacheClient) {
+        this.cacheClient = cacheClient;
     }
 
     @Override

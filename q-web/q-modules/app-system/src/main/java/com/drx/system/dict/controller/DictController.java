@@ -1,8 +1,8 @@
 package com.drx.system.dict.controller;
 
+import com.drx.cache.repository.CacheClient;
 import com.drx.core.response.Result;
-import com.drx.starter.entity.SysDictItem;
-import com.drx.starter.repository.RedisService;
+import com.drx.db.entity.SysDictItem;
 import com.drx.system.dict.pojo.result.DictItemResult;
 import com.drx.system.dict.service.SysDictItemService;
 import org.springframework.beans.BeanUtils;
@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
 public class DictController {
 
     private final SysDictItemService sysDictItemService;
-    private final RedisService redisService;
+    private final CacheClient cacheClient;
 
-    public DictController(SysDictItemService sysDictItemService, RedisService redisService) {
+    public DictController(SysDictItemService sysDictItemService, CacheClient cacheClient) {
         this.sysDictItemService = sysDictItemService;
-        this.redisService = redisService;
+        this.cacheClient = cacheClient;
     }
 
     @GetMapping("/{code}")
     public Result<List<DictItemResult>> itemListByCode(@PathVariable String code) {
-        List<DictItemResult> dict_item = (List<DictItemResult>) redisService.getValue(String.format("dict_%s", code));
+        List<DictItemResult> dict_item = (List<DictItemResult>) cacheClient.getValue(String.format("dict_%s", code));
         if (dict_item == null) {
             List<SysDictItem> sysDictItems = sysDictItemService.listByCode(code);
             dict_item = sysDictItems.stream().map(item -> {
@@ -36,7 +36,7 @@ public class DictController {
                 BeanUtils.copyProperties(item, result);
                 return result;
             }).collect(Collectors.toList());
-            redisService.setValue(String.format("dict_%s", code), dict_item, (long) (10 * 60));
+            cacheClient.setValue(String.format("dict_%s", code), dict_item, (long) (10 * 60));
         }
         return Result.success(dict_item);
     }

@@ -3,11 +3,11 @@ package com.drx.system.dict.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.drx.starter.entity.SysDict;
-import com.drx.starter.entity.SysDictItem;
-import com.drx.starter.mapper.SysDictItemMapper;
-import com.drx.starter.repository.RedisService;
+import com.drx.cache.repository.CacheClient;
+import com.drx.db.entity.SysDict;
+import com.drx.db.entity.SysDictItem;
 import com.drx.system.dict.service.SysDictItemService;
+import com.drx.db.mapper.SysDictItemMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDictItem> implements SysDictItemService {
+public class SysDictItemServiceImpl extends ServiceImpl<SysDictItemMapper, SysDictItem> implements SysDictItemService{
 
     private final BaseMapper<SysDict> sysDictMapper;
-    private final RedisService redisService;
+    private final CacheClient cacheClient;
 
-    public SysDictItemServiceImpl(BaseMapper<SysDict> sysDictMapper, RedisService redisService) {
+    public SysDictItemServiceImpl(BaseMapper<SysDict> sysDictMapper, CacheClient cacheClient) {
         this.sysDictMapper = sysDictMapper;
-        this.redisService = redisService;
+        this.cacheClient = cacheClient;
     }
 
     @Override

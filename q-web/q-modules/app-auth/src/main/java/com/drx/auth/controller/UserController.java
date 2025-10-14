@@ -3,8 +3,8 @@ package com.drx.auth.controller;
 import com.drx.auth.pojo.form.LoginForm;
 import com.drx.auth.service.SysUserService;
 import com.drx.core.response.Result;
-import com.drx.starter.annotation.RequireUser;
-import jakarta.validation.Valid;
+//import com.drx.starter.annotation.RequireUser;
+//import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +22,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public Result<String> login(@RequestBody @Valid LoginForm form) {
+    public Result<String> login(@RequestBody LoginForm form) {
         String token = sysUserService.login(form);
         return Result.success(token);
     }
 
-    @RequireUser
+//    @RequireUser
     @PostMapping("/logout")
     public Result<String> logout() {
         sysUserService.logout();
