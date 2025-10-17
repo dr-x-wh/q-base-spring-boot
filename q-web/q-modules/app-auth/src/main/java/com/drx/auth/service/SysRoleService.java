@@ -2,12 +2,13 @@ package com.drx.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.drx.auth.dto.LoginDTO;
+import com.drx.db.entity.SysRole;
 import com.drx.db.entity.SysUser;
 
-public interface SysUserService extends IService<SysUser> {
+import java.util.List;
 
-    String login(LoginDTO form);
+public interface SysRoleService extends IService<SysRole> {
 
-    void logout();
+    List<String> getByUserId(String userId);
 
 }

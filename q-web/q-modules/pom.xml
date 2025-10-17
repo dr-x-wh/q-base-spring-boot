@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <modules>
-<!--        <module>app-auth</module>-->
+        <module>app-auth</module>
         <module>app-system</module>
     </modules>
 

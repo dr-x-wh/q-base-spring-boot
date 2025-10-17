@@ -21,4 +21,14 @@
         <module>q-utils</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.drx</groupId>
+                <artifactId>q-cache</artifactId>
+                <version>${revision}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

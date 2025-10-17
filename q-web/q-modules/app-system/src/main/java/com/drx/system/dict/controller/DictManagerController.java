@@ -3,6 +3,7 @@ package com.drx.system.dict.controller;
 import com.drx.core.response.Result;
 import com.drx.db.entity.SysDict;
 import com.drx.db.entity.SysDictItem;
+import com.drx.security.annotation.RequireUser;
 import com.drx.system.dict.service.SysDictItemService;
 import com.drx.system.dict.service.SysDictService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +28,7 @@ public class DictManagerController {
         this.sysDictItemService = sysDictItemService;
     }
 
-    //    @RequireUser({"admin"})
+    @RequireUser({"admin"})
     @GetMapping
     public Result<List<SysDict>> list() {
         List<SysDict> list = sysDictService.list();
@@ -35,7 +36,7 @@ public class DictManagerController {
         return Result.success(list);
     }
 
-    //    @RequireUser({"admin"})
+    @RequireUser({"admin"})
     @GetMapping("/{code}")
     public Result<List<SysDictItem>> itemListByCode(@PathVariable String code) {
         return Result.success(sysDictItemService.allListByCode(code));

@@ -1,23 +1,15 @@
 package com.drx.db.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
 import lombok.Data;
 
-/**
- * @TableName sys_user_role
- */
-@TableName(value ="sys_user_role")
+import java.sql.Timestamp;
+
 @Data
 public class SysUserRole {
-    private Object userId;
 
-    private Object roleId;
-
-    private Date createdAt;
-
+    private String userId;
+    private String roleId;
+    private Timestamp createdAt;
     private String createdBy;
+
 }

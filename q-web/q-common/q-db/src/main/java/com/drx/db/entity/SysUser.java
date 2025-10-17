@@ -1,37 +1,22 @@
 package com.drx.db.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
 import lombok.Data;
 
-/**
- * @TableName sys_user
- */
-@TableName(value ="sys_user")
+import java.sql.Timestamp;
+
 @Data
 public class SysUser {
-    private Object id;
 
+    private String id;
     private String username;
-
     private String password;
-
     private String nickname;
-
     private String avatarUrl;
-
     private String gender;
-
     private String state;
-
-    private Date updatedAt;
-
+    private Timestamp updatedAt;
     private String updatedBy;
-
-    private Date createdAt;
-
+    private Timestamp createdAt;
     private String createdBy;
+
 }
