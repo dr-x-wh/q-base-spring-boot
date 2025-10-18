@@ -1,2 +1,3 @@
+com.drx.db.config.AppConfig
 com.drx.db.config.MybatisConfig
 com.drx.db.config.TransactionConfig

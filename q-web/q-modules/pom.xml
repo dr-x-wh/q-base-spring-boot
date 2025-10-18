@@ -15,7 +15,6 @@
 
     <modules>
         <module>app-auth</module>
-        <module>app-system</module>
     </modules>
 
 </project>

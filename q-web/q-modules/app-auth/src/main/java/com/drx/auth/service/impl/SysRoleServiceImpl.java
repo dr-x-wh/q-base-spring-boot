@@ -23,6 +23,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     public List<String> getByUserId(String userId) {
-        return baseMapper.selectByUserId(userId);
+        return List.of();
     }
 }

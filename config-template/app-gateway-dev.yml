@@ -10,3 +10,10 @@ spring:
                 - Path=/test/**
               filters:
                 - StripPrefix=1
+
+logging:
+  level:
+    root: info
+    com:
+      drx: debug
+

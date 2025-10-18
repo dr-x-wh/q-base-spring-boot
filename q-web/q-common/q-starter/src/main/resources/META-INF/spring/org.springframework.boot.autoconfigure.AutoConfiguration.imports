@@ -1,2 +1,3 @@
+com.drx.starter.config.AppConfig
 com.drx.starter.config.JacksonConfig
 com.drx.starter.exception.GlobalExceptionHandler

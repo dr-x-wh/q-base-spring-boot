@@ -1,0 +1,4 @@
+spring:
+  config:
+    import:
+      - nacos:base-cache-${spring.profiles.active}.yml

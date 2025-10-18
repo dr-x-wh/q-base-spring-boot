@@ -1,0 +1,4 @@
+spring:
+  config:
+    import:
+      - nacos:base-db-${spring.profiles.active}.yml

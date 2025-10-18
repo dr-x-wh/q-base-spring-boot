@@ -5,17 +5,13 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.drx.core.constant.SecurityConstant;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class JwtTool {
-
-    private static final String SECRET = "N6uAsGk2WXrLpYiyc90xhpc3zMdTFZgkVM0csk8KnQazLVz5huCVHZzC6714";
-
-
-    private static final long EXPIRATION = 3 * 24 * 60 * 60;
 
     public static String createToken(Map<String, String> payload, String secret, Long expires) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -25,7 +21,7 @@ public class JwtTool {
     }
 
     public static String createToken(Map<String, String> payload) {
-        return JwtTool.createToken(payload, SECRET, EXPIRATION);
+        return JwtTool.createToken(payload, SecurityConstant.JWT_SECRET, SecurityConstant.JWT_EXPIRATION);
     }
 
     public static Map<String, String> parseToken(String token, String secret) {
@@ -47,7 +43,7 @@ public class JwtTool {
     }
 
     public static Map<String, String> parseToken(String token) {
-        return JwtTool.parseToken(token, SECRET);
+        return JwtTool.parseToken(token, SecurityConstant.JWT_SECRET);
     }
 
 }

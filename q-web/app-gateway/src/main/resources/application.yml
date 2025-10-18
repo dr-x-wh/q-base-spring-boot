@@ -11,5 +11,4 @@ spring:
       server-addr: 127.0.0.1:8848
   config:
     import:
-      - nacos:base-${spring.profiles.active}.yml
       - optional:nacos:${spring.application.name}-${spring.profiles.active}.yml
