@@ -1,2 +1,1 @@
 com.drx.api.config.FeignConfig
-com.drx.api.factory.RemoteUserFallbackFactory

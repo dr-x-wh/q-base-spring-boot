@@ -1,52 +1,43 @@
 package com.drx.auth.controller;
 
+import com.drx.api.annotation.Inner;
 import com.drx.api.domain.LoginUser;
-import com.drx.auth.dto.LoginDTO;
-import com.drx.auth.service.SysRoleService;
-import com.drx.auth.service.SysUserService;
+import com.drx.auth.dto.RegisterDTO;
+import com.drx.auth.result.UserInfo;
 import com.drx.core.response.Result;
-import com.drx.db.entity.SysUser;
+import com.drx.security.annotation.RequireUser;
 import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@Slf4j
 @Validated
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class UserController {
 
-
-    private final SysUserService sysUserService;
-    private final SysRoleService sysRoleService;
-
-    public UserController(SysUserService sysUserService, SysRoleService sysRoleService) {
-        this.sysUserService = sysUserService;
-        this.sysRoleService = sysRoleService;
+    @PostMapping("/register")
+    public Result<Void> register(@RequestBody @Valid RegisterDTO dto) {
+        log.debug(dto.toString());
+        return Result.success();
     }
 
+    @RequireUser
+    @DeleteMapping("/{id}")
+    public Result<Void> remove(@PathVariable String id) {
+        return Result.success();
+    }
+
+    @RequireUser
     @GetMapping("/{id}")
-    public Result<LoginUser> userInfo(@PathVariable String id) {
-        SysUser user = sysUserService.getById(id);
-        LoginUser loginUser = new LoginUser();
-        BeanUtils.copyProperties(user, loginUser);
-        List<String> roles = sysRoleService.getByUserId(user.getId());
-        loginUser.setRoles(roles);
-        return Result.success(loginUser);
+    public Result<UserInfo> getUser(@PathVariable String id) {
+        return Result.success();
     }
 
-    @PostMapping("/login")
-    public Result<String> login(@RequestBody @Valid LoginDTO dto) {
-        String token = sysUserService.login(dto);
-        return Result.success(token);
-    }
-
-    //    @RequireUser
-    @PostMapping("/logout")
-    public Result<String> logout() {
-        sysUserService.logout();
+    @Inner
+    @GetMapping("/inner/{id}")
+    public Result<LoginUser> getUserByInner(@PathVariable String id) {
         return Result.success();
     }
 
