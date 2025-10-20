@@ -10,6 +10,8 @@ spring:
                 - Path=/test/**
               filters:
                 - StripPrefix=1
+  cache:
+    type: caffeine
 
 logging:
   level:

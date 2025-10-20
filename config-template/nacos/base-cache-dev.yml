@@ -12,3 +12,8 @@ spring:
           max-idle: 8
           min-idle: 1
           max-wait: 3s
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+      cache-null-values: false
