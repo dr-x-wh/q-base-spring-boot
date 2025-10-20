@@ -12,6 +12,8 @@ public class RegisterDTO {
     @NotBlank
     private String password;
 
+    private String nickname;
+
     private String avatarUrl;
 
     @NotBlank

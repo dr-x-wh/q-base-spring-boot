@@ -1,11 +1,12 @@
 SET TIMEZONE = 'Asia/Shanghai';
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- ------------------------------
 -- 用户表（存储用户核心信息）
 -- ------------------------------
 DROP TABLE IF EXISTS sys_user;
 CREATE TABLE IF NOT EXISTS sys_user
 (
-    id         UUID PRIMARY KEY,
+    id         UUID PRIMARY KEY      DEFAULT UUID_GENERATE_V4(),
     username   VARCHAR(63)  NOT NULL UNIQUE,
     password   VARCHAR(255) NOT NULL,
     nickname   VARCHAR(63),
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS sys_user
 DROP TABLE IF EXISTS sys_role;
 CREATE TABLE IF NOT EXISTS sys_role
 (
-    id          UUID PRIMARY KEY,
+    id          UUID PRIMARY KEY      DEFAULT UUID_GENERATE_V4(),
     code        VARCHAR(15)  NOT NULL UNIQUE,
     name        VARCHAR(15)  NOT NULL UNIQUE,
     description VARCHAR(63),
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS sys_user_role
 DROP TABLE IF EXISTS sys_dict;
 CREATE TABLE IF NOT EXISTS sys_dict
 (
-    id          UUID PRIMARY KEY,
+    id          UUID PRIMARY KEY      DEFAULT UUID_GENERATE_V4(),
     code        VARCHAR(15)  NOT NULL UNIQUE,
     name        VARCHAR(15)  NOT NULL UNIQUE,
     description VARCHAR(255),
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS sys_dict
 DROP TABLE IF EXISTS sys_dict_item;
 CREATE TABLE IF NOT EXISTS sys_dict_item
 (
-    id          UUID PRIMARY KEY,
+    id          UUID PRIMARY KEY      DEFAULT UUID_GENERATE_V4(),
     dict_id     UUID         NOT NULL,
     code        VARCHAR(63)  NOT NULL,
     name        VARCHAR(63)  NOT NULL,

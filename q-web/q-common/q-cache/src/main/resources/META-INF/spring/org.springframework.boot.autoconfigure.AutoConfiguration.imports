@@ -1,3 +1,2 @@
-com.drx.cache.config.AppConfig
 com.drx.cache.config.RedisConfig
 com.drx.cache.repository.CacheClient

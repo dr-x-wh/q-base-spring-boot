@@ -4,10 +4,15 @@ import com.drx.api.annotation.Inner;
 import com.drx.api.domain.LoginUser;
 import com.drx.auth.dto.RegisterDTO;
 import com.drx.auth.result.UserInfo;
+import com.drx.auth.service.UserService;
 import com.drx.core.response.Result;
+import com.drx.core.tools.BcryptTool;
+import com.drx.core.tools.UUIDTool;
+import com.drx.db.entity.SysUser;
 import com.drx.security.annotation.RequireUser;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +22,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
 
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/register")
     public Result<Void> register(@RequestBody @Valid RegisterDTO dto) {
         log.debug(dto.toString());
+        SysUser sysUser = new SysUser();
+        sysUser.setUsername(dto.getUsername());
+        sysUser.setPassword(BcryptTool.encrypt(dto.getPassword()));
+        sysUser.setNickname(dto.getNickname());
+        sysUser.setAvatarUrl(dto.getAvatarUrl());
+        sysUser.setGender(dto.getGender());
+        sysUser.setId(UUIDTool.generatorUUID());
+        boolean save = userService.save(sysUser);
+        Assert.isTrue(save, "注册失败");
         return Result.success();
     }
 

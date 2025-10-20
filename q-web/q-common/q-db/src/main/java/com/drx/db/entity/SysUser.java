@@ -3,11 +3,12 @@ package com.drx.db.entity;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Data
 public class SysUser {
 
-    private String id;
+    private UUID id;
     private String username;
     private String password;
     private String nickname;
