@@ -1,6 +1,7 @@
 package com.drx.starter.config;
 
 import com.drx.core.constant.SystemConstant;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -23,23 +24,27 @@ import java.util.TimeZone;
 public class JacksonConfig {
 
     private static final TimeZone SHANGHAI_TIME_ZONE = TimeZone.getTimeZone(SystemConstant.TIMEZONE);
+    private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(SystemConstant.DATETIME_FORMAT);
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(SystemConstant.DATE_FORMAT);
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(SystemConstant.TIME_FORMAT);
 
     @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+    public Jackson2ObjectMapperBuilderCustomizer jacksonCustomizer() {
         return builder -> {
-            builder.simpleDateFormat(SystemConstant.DATETIME_FORMAT);
             builder.timeZone(SHANGHAI_TIME_ZONE);
+            builder.simpleDateFormat(SystemConstant.DATETIME_FORMAT);
 
-            JavaTimeModule javaTimeModule = new JavaTimeModule();
-            javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(SystemConstant.DATETIME_FORMAT)));
-            javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern(SystemConstant.DATE_FORMAT)));
-            javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(DateTimeFormatter.ofPattern(SystemConstant.TIME_FORMAT)));
-            javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(SystemConstant.DATETIME_FORMAT)));
-            javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern(SystemConstant.DATE_FORMAT)));
-            javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(DateTimeFormatter.ofPattern(SystemConstant.TIME_FORMAT)));
-            builder.modules(javaTimeModule);
+            JavaTimeModule module = new JavaTimeModule();
+            module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DATETIME_FORMATTER));
+            module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DATETIME_FORMATTER));
+            module.addSerializer(LocalDate.class, new LocalDateSerializer(DATE_FORMATTER));
+            module.addDeserializer(LocalDate.class, new LocalDateDeserializer(DATE_FORMATTER));
+            module.addSerializer(LocalTime.class, new LocalTimeSerializer(TIME_FORMATTER));
+            module.addDeserializer(LocalTime.class, new LocalTimeDeserializer(TIME_FORMATTER));
+            builder.modules(module);
 
             builder.featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            builder.serializationInclusion(JsonInclude.Include.NON_NULL);
         };
     }
 }

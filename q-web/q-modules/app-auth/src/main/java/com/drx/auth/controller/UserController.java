@@ -6,9 +6,6 @@ import com.drx.auth.dto.RegisterDTO;
 import com.drx.auth.result.UserInfo;
 import com.drx.auth.service.UserService;
 import com.drx.core.response.Result;
-import com.drx.core.tools.BcryptTool;
-import com.drx.core.tools.UUIDTool;
-import com.drx.db.entity.SysUser;
 import com.drx.security.annotation.RequireUser;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -32,14 +29,7 @@ public class UserController {
     @PostMapping("/register")
     public Result<Void> register(@RequestBody @Valid RegisterDTO dto) {
         log.debug(dto.toString());
-        SysUser sysUser = new SysUser();
-        sysUser.setUsername(dto.getUsername());
-        sysUser.setPassword(BcryptTool.encrypt(dto.getPassword()));
-        sysUser.setNickname(dto.getNickname());
-        sysUser.setAvatarUrl(dto.getAvatarUrl());
-        sysUser.setGender(dto.getGender());
-        sysUser.setId(UUIDTool.generatorUUID());
-        boolean save = userService.save(sysUser);
+        boolean save = userService.save(dto);
         Assert.isTrue(save, "注册失败");
         return Result.success();
     }

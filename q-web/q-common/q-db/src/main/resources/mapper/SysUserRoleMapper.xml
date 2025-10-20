@@ -4,8 +4,4 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.drx.db.mapper.SysUserRoleMapper">
 
-    <sql id="Base_Column_List">
-        user_id,role_id,created_at,created_by
-    </sql>
-
 </mapper>

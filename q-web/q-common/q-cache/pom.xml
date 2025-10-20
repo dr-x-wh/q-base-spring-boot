@@ -14,11 +14,6 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!--web服务-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <!--缓存-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

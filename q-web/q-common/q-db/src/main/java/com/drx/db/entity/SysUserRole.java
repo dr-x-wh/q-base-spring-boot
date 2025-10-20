@@ -2,14 +2,14 @@ package com.drx.db.entity;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 public class SysUserRole {
 
-    private String userId;
-    private String roleId;
-    private Timestamp createdAt;
+    private UUID userId;
+    private UUID roleId;
+    private LocalDate createdAt;
     private String createdBy;
-
 }

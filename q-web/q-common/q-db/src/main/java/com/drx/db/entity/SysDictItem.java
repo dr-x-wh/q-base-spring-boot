@@ -2,22 +2,22 @@ package com.drx.db.entity;
 
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 public class SysDictItem {
 
-    private String id;
-    private String dictId;
+    private UUID id;
+    private UUID dictId;
     private String code;
     private String name;
     private String description;
     private String isDefault;
     private Long sort;
     private String state;
-    private Timestamp updatedAt;
+    private LocalDate updatedAt;
     private String updatedBy;
-    private Timestamp createdAt;
+    private LocalDate createdAt;
     private String createdBy;
-
 }

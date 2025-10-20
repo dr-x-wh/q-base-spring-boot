@@ -1,18 +1,20 @@
 package com.drx.db.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 public class SysDict {
-
-    private String id;
+    @TableId
+    private UUID id;
     private String code;
     private String name;
     private String description;
-    private Timestamp updatedAt;
+    private LocalDate updatedAt;
     private String updatedBy;
-    private Timestamp createdAt;
+    private LocalDate createdAt;
     private String createdBy;
 }

@@ -1,7 +1,9 @@
 package com.drx.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.drx.db.entity.SysUser;
+import com.drx.auth.dto.RegisterDTO;
 
-public interface UserService extends IService<SysUser> {
+public interface UserService {
+
+    boolean save(RegisterDTO dto);
+
 }
